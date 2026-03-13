@@ -130,7 +130,7 @@ isNaN(day) || day < 1 || day > maxDay ||
 isNaN(month) || month < 1 || month > 12 ||
 isNaN(year) || year < 1900 || year > currentYear
 ){
-error.textContent = "Please enter a valid birth date.";
+error.textContent = "Check your input. Please enter a valid birth date.";
 return;
 }
 
