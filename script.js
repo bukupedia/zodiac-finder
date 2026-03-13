@@ -61,7 +61,7 @@ const animals = [
 "Horse","Goat","Monkey","Rooster","Dog","Pig"
 ];
 
-const index = (year - 4) % 12;
+const index = ((year - 4) % 12 + 12) % 12;
 
 return animals[index];
 
