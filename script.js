@@ -87,6 +87,30 @@ return age;
 
 }
 
+function daysUntilBirthday(day, month){
+
+const today = new Date();
+
+let nextBirthday = new Date(
+today.getFullYear(),
+month - 1,
+day
+);
+
+if (today > nextBirthday){
+nextBirthday.setFullYear(today.getFullYear() + 1);
+}
+
+const diffTime = nextBirthday - today;
+
+const diffDays = Math.ceil(
+diffTime / (1000 * 60 * 60 * 24)
+);
+
+return diffDays;
+
+}
+
 document.getElementById("birthdayForm").addEventListener("submit", function(event){
 
 event.preventDefault();
