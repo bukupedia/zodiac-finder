@@ -67,6 +67,26 @@ return animals[index];
 
 }
 
+function calculateAge(day, month, year){
+
+const today = new Date();
+
+let age = today.getFullYear() - year;
+
+const currentMonth = today.getMonth() + 1;
+const currentDay = today.getDate();
+
+if (
+currentMonth < month ||
+(currentMonth === month && currentDay < day)
+){
+age--;
+}
+
+return age;
+
+}
+
 document.getElementById("birthdayForm").addEventListener("submit", function(event){
 
 event.preventDefault();
