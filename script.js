@@ -39,3 +39,21 @@ const index = (year - 4) % 12;
 return animals[index];
 
 }
+
+document.getElementById("birthdayForm").addEventListener("submit", function(event){
+
+event.preventDefault();
+
+const day = parseInt(document.getElementById("day").value);
+const month = parseInt(document.getElementById("month").value);
+const year = parseInt(document.getElementById("year").value);
+
+const dayOfWeek = getDayOfWeek(day, month, year);
+const zodiac = getZodiacSign(day, month);
+const chinese = getChineseZodiac(year);
+
+document.getElementById("dayResult").textContent = dayOfWeek;
+document.getElementById("zodiacResult").textContent = zodiac;
+document.getElementById("chineseResult").textContent = chinese;
+
+});
