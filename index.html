@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://cdn.jsdelivr.net 'unsafe-inline'; script-src 'self'">
 
 <title>Zodiac Finder</title>
 
@@ -24,46 +25,60 @@
 
 <h2 class="mb-3">Enter Your Birthdate</h2>
 
-<form id="birthdayForm">
+<form id="birthdayForm" novalidate>
 
 <div class="row g-3">
 
 <div class="col-md-4">
-<label class="form-label">Day</label>
-<input type="number" id="day" class="form-control" required>
+<label for="day" class="form-label">Day</label>
+<input type="number" id="day" class="form-control" min="1" max="31" required aria-describedby="dayHelp">
+<div id="dayHelp" class="form-text">1-31</div>
+<div class="invalid-feedback" id="dayError"></div>
 </div>
 
 <div class="col-md-4">
-<label class="form-label">Month</label>
-<input type="number" id="month" class="form-control" required>
+<label for="month" class="form-label">Month</label>
+<input type="number" id="month" class="form-control" min="1" max="12" required aria-describedby="monthHelp">
+<div id="monthHelp" class="form-text">1-12</div>
+<div class="invalid-feedback" id="monthError"></div>
 </div>
 
 <div class="col-md-4">
-<label class="form-label">Year</label>
-<input type="number" id="year" class="form-control" required>
+<label for="year" class="form-label">Year</label>
+<input type="number" id="year" class="form-control" min="1900" max="2025" required aria-describedby="yearHelp">
+<div id="yearHelp" class="form-text">1900-2025</div>
+<div class="invalid-feedback" id="yearError"></div>
 </div>
 
 </div>
 
-<button class="btn btn-primary mt-4" type="submit">
+<div class="mt-4">
+<button class="btn btn-primary me-2" type="submit">
 Calculate
 </button>
+<button class="btn btn-outline-secondary" type="reset">
+Reset
+</button>
+</div>
 
 </form>
 
 </section>
 
-<section id="results" class="mt-4 card p-4">
+<section id="results" class="mt-4 card p-4" aria-live="polite">
 
 <h3>Results</h3>
-<p id="errorMessage" class="text-danger"></p>
-<p><strong>Day of Birth:</strong> <span id="dayResult">-</span></p>
-<p><strong>Zodiac Sign:</strong> <span id="zodiacResult">-</span></p>
-<p><strong>Chinese Zodiac (Shio):</strong> <span id="chineseResult">-</span></p>
-<p><strong>Age:</strong> <span id="ageResult">-</span></p>
+<p id="errorMessage" class="text-danger" role="alert"></p>
 
-<p><strong>Days Until Next Birthday:</strong>
-<span id="birthdayCountdown">-</span></p>
+<div id="resultContent" class="result-content" hidden>
+<p><strong>Day of Birth:</strong> <span id="dayResult"></span></p>
+<p><strong>Zodiac Sign:</strong> <span id="zodiacResult"></span></p>
+<p><strong>Chinese Zodiac (Shio):</strong> <span id="chineseResult"></span></p>
+<p><strong>Age:</strong> <span id="ageResult"></span></p>
+<p><strong>Days Until Next Birthday:</strong> <span id="birthdayCountdown"></span></p>
+</div>
+
+<p id="placeholderMessage" class="text-muted">Enter your birthdate above to see your zodiac signs.</p>
 
 </section>
 
